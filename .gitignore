@@ -52,3 +52,10 @@ target/
 logs/
 
 dependency-reduced-pom.xml
+
+# VS Code
+.classpath
+.factorypath
+.project
+.settings
+settings.json
