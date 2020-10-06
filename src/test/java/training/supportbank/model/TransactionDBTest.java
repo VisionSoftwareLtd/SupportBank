@@ -1,6 +1,7 @@
 package training.supportbank.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static training.supportbank.utils.Utils.instantFromDate;
 
 import java.io.StringReader;
 import java.util.List;
@@ -29,7 +30,7 @@ public class TransactionDBTest {
         initialise(database);
         List<Transaction> transactions = database.getTransactions();
         Transaction jonA = transactions.get(0);
-        assertEquals("01/01/2014", jonA.getDate());
+        assertEquals(instantFromDate("01/01/2014"), jonA.getDate());
         assertEquals("Jon A", jonA.getFrom());
         assertEquals("Sarah T", jonA.getTo());
         assertEquals("Pokemon Training", jonA.getNarrative());
@@ -37,7 +38,7 @@ public class TransactionDBTest {
         assertEquals(7.8, jonA.getAmount());
 
         Transaction stephenS = transactions.get(1);
-        assertEquals("04/01/2014", stephenS.getDate());
+        assertEquals(instantFromDate("04/01/2014"), stephenS.getDate());
         assertEquals("Stephen S", stephenS.getFrom());
         assertEquals("Tim L", stephenS.getTo());
         assertEquals("Lunch", stephenS.getNarrative());
@@ -52,7 +53,7 @@ public class TransactionDBTest {
         List<Transaction> jonATransactions = database.getTransactions("Jon A");
         assertEquals(1, jonATransactions.size());
         Transaction jonA = jonATransactions.get(0);
-        assertEquals("01/01/2014", jonA.getDate());
+        assertEquals(instantFromDate("01/01/2014"), jonA.getDate());
         assertEquals("Jon A", jonA.getFrom());
         assertEquals("Sarah T", jonA.getTo());
         assertEquals("Pokemon Training", jonA.getNarrative());
