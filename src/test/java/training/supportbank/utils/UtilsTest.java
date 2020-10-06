@@ -3,6 +3,7 @@ package training.supportbank.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static training.supportbank.utils.Utils.amountToBasisPoints;
+import static training.supportbank.utils.Utils.basisPointsToAmount;
 import static training.supportbank.utils.Utils.instantFromDate;
 
 import java.time.Instant;
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class UtilsTest {
@@ -26,6 +28,13 @@ public class UtilsTest {
     @ValueSource(strings = { "123.45.789", "foobar" })
     public void invalidAmount(String amount) {
         assertThrows(NumberFormatException.class, () -> amountToBasisPoints(amount));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = { "12345,'123.45'", "120,'1.20'", "34,'0.34'", "2,'0.02'" })
+    public void validBasisPoints(int basisPoints, String expected) {
+        String amount = basisPointsToAmount(basisPoints);
+        assertEquals(expected, amount);
     }
 
     @ParameterizedTest

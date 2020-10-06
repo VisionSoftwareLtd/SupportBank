@@ -11,6 +11,10 @@ public class Utils {
 		return (int)(amountDouble * 100);
 	}
 
+	public static String basisPointsToAmount(int basisPoints) {
+		return String.format("%.2f", (float)(basisPoints) / 100);
+	}
+
 	public static LocalDate instantFromDate(String date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		return LocalDate.parse(date, formatter);
