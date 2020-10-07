@@ -2,7 +2,7 @@ package training.supportbank.model;
 
 import static training.supportbank.utils.Utils.amountToBasisPoints;
 import static training.supportbank.utils.Utils.basisPointsToAmount;
-import static training.supportbank.utils.Utils.instantFromDate;
+import static training.supportbank.utils.Utils.localDateFromString;
 
 import java.time.LocalDate;
 
@@ -17,7 +17,7 @@ public class Transaction {
     private int amountBasisPoints;
 
     public Transaction(String date, String from, String to, String narrative, String amount) {
-        this.date = instantFromDate(date);
+        this.date = localDateFromString(date);
         this.from = from;
         this.to = to;
         this.narrative = narrative;

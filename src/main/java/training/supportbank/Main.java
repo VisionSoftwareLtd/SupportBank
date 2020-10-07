@@ -2,6 +2,7 @@ package training.supportbank;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Map;
 import java.util.Scanner;
 
 import training.supportbank.model.TransactionDB;
@@ -16,10 +17,11 @@ public class Main {
         database = new TransactionDBMemory();
         FileReader reader = new FileReader("Transactions2014.csv");
         int count = database.initialise(reader);
-        System.out.println(String.format("Read {} items from csv file", count));
+        System.out.println(String.format("Read %d items from csv file", count));
 
         if (args.length != 2) {
             System.out.println("Usage: <appname> List [All|<Account>]");
+            System.out.println("e.g. <appname> List \"Jon A\"");
             System.out.println("Alternatively, use the console here.  Enter 'Quit' to quit.");
             useConsole();
             return;
@@ -35,6 +37,7 @@ public class Main {
         String operation;
         String parameter;
         do {
+            System.out.println("Enter command:");
             lineRead = scanner.nextLine();
             if (lineRead.indexOf(" ") == -1) {
                 operation = lineRead;
@@ -48,12 +51,18 @@ public class Main {
     }
 
     private static void doOperation(String operation, String parameter) {
+        Banker banker = new Banker();
         if (operation.equalsIgnoreCase(OPERATION_LIST)) {
             if (parameter.equalsIgnoreCase("all")) {
-                Banker banker = new Banker();
                 banker.listAll(database);
             } else {
-                database.getTransactions(parameter).stream().forEach(System.out::println);
+                Map<String, Integer> allAccounts = banker.getAllAccounts(database);
+                if (allAccounts.containsKey(parameter)) {
+                    database.getTransactions(parameter).stream().forEach(System.out::println);
+                    System.out.println(Banker.formatAccountDetails(parameter, allAccounts.get(parameter)));
+                } else {
+                    System.out.println(String.format("No such name: %s", parameter));
+                }
             }
         }
     }

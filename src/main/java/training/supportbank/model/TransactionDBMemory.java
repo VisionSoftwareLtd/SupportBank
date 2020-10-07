@@ -40,6 +40,8 @@ public class TransactionDBMemory implements TransactionDB {
 
 	@Override
 	public List<Transaction> getTransactions(String account) {
-		return database.stream().filter((trans) -> trans.getFrom().equals(account)).collect(Collectors.toList());
+		return database.stream().filter(
+			(trans) -> (trans.getFrom().equals(account) || trans.getTo().equals(account)))
+			.collect(Collectors.toList());
 	}
 }

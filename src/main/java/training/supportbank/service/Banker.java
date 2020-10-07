@@ -15,8 +15,12 @@ public class Banker {
         Map<String, Integer> account = getAllAccounts(database);
         List<String> sortedNames = account.keySet().stream().sorted().collect(Collectors.toList());
         for (String name : sortedNames) {
-            System.out.println(String.format("%10s: £%s", name, basisPointsToAmount(account.get(name))));
+            System.out.println(formatAccountDetails(name, account.get(name)));
         }
+    }
+
+    public static String formatAccountDetails(String name, int amountBasisPoints) {
+        return String.format("%10s: £%s", name, basisPointsToAmount(amountBasisPoints));
     }
 
     public Map<String, Integer> getAllAccounts(TransactionDB database) {

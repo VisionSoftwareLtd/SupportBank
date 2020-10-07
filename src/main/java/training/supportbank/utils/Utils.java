@@ -15,7 +15,7 @@ public class Utils {
 		return String.format("%.2f", (float)(basisPoints) / 100);
 	}
 
-	public static LocalDate instantFromDate(String date) {
+	public static LocalDate localDateFromString(String date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		return LocalDate.parse(date, formatter);
 	}

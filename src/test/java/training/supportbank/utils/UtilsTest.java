@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static training.supportbank.utils.Utils.amountToBasisPoints;
 import static training.supportbank.utils.Utils.basisPointsToAmount;
-import static training.supportbank.utils.Utils.instantFromDate;
+import static training.supportbank.utils.Utils.localDateFromString;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -40,7 +40,7 @@ public class UtilsTest {
     @ParameterizedTest
     @ValueSource(strings = { "01/01/2020", "30/09/2014", "31/12/1969" })
     public void validDate(String date) {
-        LocalDate localDate = instantFromDate(date);
+        LocalDate localDate = localDateFromString(date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         assertEquals(LocalDate.parse(date, formatter), localDate);
     }
@@ -48,6 +48,6 @@ public class UtilsTest {
     @ParameterizedTest
     @ValueSource(strings = { "32/01/2020", "-1/09/2014", "penguin" })
     public void invalidDate(String date) {
-        assertThrows(DateTimeParseException.class, () -> instantFromDate(date));
+        assertThrows(DateTimeParseException.class, () -> localDateFromString(date));
     }
 }
