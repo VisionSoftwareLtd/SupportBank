@@ -6,7 +6,6 @@ import static training.supportbank.utils.Utils.amountToBasisPoints;
 import static training.supportbank.utils.Utils.basisPointsToAmount;
 import static training.supportbank.utils.Utils.localDateFromString;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,7 +26,8 @@ public class UtilsTest {
     @ParameterizedTest
     @ValueSource(strings = { "123.45.789", "foobar" })
     public void invalidAmount(String amount) {
-        assertThrows(NumberFormatException.class, () -> amountToBasisPoints(amount));
+        int basisPoints = amountToBasisPoints(amount);
+        assertEquals(0, basisPoints);
     }
 
     @ParameterizedTest
@@ -48,6 +48,7 @@ public class UtilsTest {
     @ParameterizedTest
     @ValueSource(strings = { "32/01/2020", "-1/09/2014", "penguin" })
     public void invalidDate(String date) {
-        assertThrows(DateTimeParseException.class, () -> localDateFromString(date));
+        LocalDate localDate = localDateFromString(date);
+        assertEquals(LocalDate.MIN, localDate);
     }
 }

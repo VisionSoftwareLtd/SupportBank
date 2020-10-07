@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="SupportBank" packages="">
+    <Appenders>
+        <File name="FileAppender" fileName="logs/SupportBank.log">
+            <PatternLayout>
+                <Pattern>[%d] %p - %c - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>[%d] %p - %c - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="FileAppender"/>
+            <AppenderRef ref="ConsoleAppender" level="ERROR"/>
+        </Root>
+    </Loggers>
+</Configuration>

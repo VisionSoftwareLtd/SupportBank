@@ -15,7 +15,8 @@ public class Main {
     public static void main(String args[]) throws FileNotFoundException {
         System.out.println("Initialising databse...");
         database = new TransactionDBMemory();
-        FileReader reader = new FileReader("Transactions2014.csv");
+        FileReader reader = new FileReader("DodgyTransactions2015.csv");
+        // FileReader reader = new FileReader("Transactions2014.csv");
         int count = database.initialise(reader);
         System.out.println(String.format("Read %d items from csv file", count));
 
@@ -48,6 +49,7 @@ public class Main {
             }
             doOperation(operation, parameter);
         } while (!lineRead.equalsIgnoreCase("quit") && !lineRead.equalsIgnoreCase("q"));
+        scanner.close();
     }
 
     private static void doOperation(String operation, String parameter) {

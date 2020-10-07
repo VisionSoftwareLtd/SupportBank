@@ -9,11 +9,16 @@ import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class TransactionDBMemory implements TransactionDB {
+
 	private List<Transaction> database;
 
 	@Override
 	public int initialise(Reader csvReader) {
+		log.info("Initialised database");
 		Iterable<CSVRecord> records;
 		try {
 			records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvReader);
