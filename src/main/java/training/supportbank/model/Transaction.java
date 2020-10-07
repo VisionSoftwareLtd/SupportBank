@@ -1,6 +1,7 @@
 package training.supportbank.model;
 
 import static training.supportbank.utils.Utils.amountToBasisPoints;
+import static training.supportbank.utils.Utils.basisPointsToAmount;
 import static training.supportbank.utils.Utils.instantFromDate;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class Transaction {
         this.amountBasisPoints = amountToBasisPoints(amount);
     }
 
-    public double getAmount() {
-        return (double)amountBasisPoints / 100;
+    public String getAmount() {
+        return basisPointsToAmount(amountBasisPoints);
     }
 }

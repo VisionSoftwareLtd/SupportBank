@@ -35,7 +35,7 @@ public class TransactionDBTest {
         assertEquals("Sarah T", jonA.getTo());
         assertEquals("Pokemon Training", jonA.getNarrative());
         assertEquals(780, jonA.getAmountBasisPoints());
-        assertEquals(7.8, jonA.getAmount());
+        assertEquals("7.80", jonA.getAmount());
 
         Transaction stephenS = transactions.get(1);
         assertEquals(instantFromDate("04/01/2014"), stephenS.getDate());
@@ -43,7 +43,7 @@ public class TransactionDBTest {
         assertEquals("Tim L", stephenS.getTo());
         assertEquals("Lunch", stephenS.getNarrative());
         assertEquals(437, stephenS.getAmountBasisPoints());
-        assertEquals(4.37, stephenS.getAmount());
+        assertEquals("4.37", stephenS.getAmount());
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ public class TransactionDBTest {
         assertEquals("Sarah T", jonA.getTo());
         assertEquals("Pokemon Training", jonA.getNarrative());
         assertEquals(780, jonA.getAmountBasisPoints());
-        assertEquals(7.8, jonA.getAmount());
+        assertEquals("7.80", jonA.getAmount());
     }
 
     public static Stream<Arguments> instancesToTest() {
