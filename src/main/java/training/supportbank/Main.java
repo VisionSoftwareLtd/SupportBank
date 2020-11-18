@@ -13,10 +13,10 @@ public class Main {
     private static final String OPERATION_LIST = "list";
     private static TransactionDB database;
     public static void main(String args[]) throws FileNotFoundException {
-        System.out.println("Initialising databse...");
+        System.out.println("Initialising database...");
         database = new TransactionDBMemory();
-        FileReader reader = new FileReader("DodgyTransactions2015.csv");
-        // FileReader reader = new FileReader("Transactions2014.csv");
+//        FileReader reader = new FileReader("DodgyTransactions2015.csv");
+         FileReader reader = new FileReader("Transactions2014.csv");
         int count = database.initialise(reader);
         System.out.println(String.format("Read %d items from csv file", count));
 
